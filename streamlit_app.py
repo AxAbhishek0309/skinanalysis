@@ -18,8 +18,9 @@ def load_model():
     try:
         model = tf.keras.models.load_model('skin_cancer_model.h5')
         return model
-    except:
-        st.error("Model not found. Please train and save the model first.")
+    except Exception as e:
+        st.error(f"Model not found: {str(e)}")
+        st.info("Please ensure the model file 'skin_cancer_model.h5' is in the repository root.")
         return None
 
 def predict_image(img, model):
